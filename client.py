@@ -19,6 +19,7 @@ import json
 
 CC_DEFAULT_RPC_PORT = 8085
 
+
 class Client(object):
     def __init__(self, host='localhost', port=CC_DEFAULT_RPC_PORT, version="2.0", tls=False):
         self.version = version
@@ -91,10 +92,15 @@ class Client(object):
         return self._call("service_run", [json.dumps(service), nodes])
 
 
-    def stop_swarm_service(self, nodes):
+    def leave_swarm_service(self, nodes):
         if not isinstance(nodes, list):
             raise TypeError('Parameter "nodes" must be given in a list form')
-        return self._call("service_stop", [nodes])
+        return self._call("service_leave", [nodes])
+
+    def leave_swarm_service(self, serviceName):
+        if not isinstance(serviceName, str):
+            raise TypeError('Parameter "serviceName" must be given in a string form')
+        return self._call("service_removeService", serviceName)
 
      # DISCOVER NODES
     def discover_nodes(self, num):
