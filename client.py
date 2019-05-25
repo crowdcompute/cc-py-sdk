@@ -97,10 +97,10 @@ class Client(object):
             raise TypeError('Parameter "nodes" must be given in a list form')
         return self._call("service_leave", [nodes])
 
-    def leave_swarm_service(self, serviceName):
-        if not isinstance(serviceName, str):
-            raise TypeError('Parameter "serviceName" must be given in a string form')
-        return self._call("service_removeService", serviceName)
+    def remove_swarm_service(self, service_name):
+        if not isinstance(service_name, str):
+            raise TypeError('Parameter "service_name" must be given in a string form')
+        return self._call("service_removeService", service_name)
 
      # DISCOVER NODES
     def discover_nodes(self, num):
