@@ -55,7 +55,6 @@ class Client(object):
             raise TypeError('Parameter "passphrase" must be a string')
         return self._call("accounts_unlockAccount", [acc, passphrase])
 
-
     def lock_account(self, account, token):
         self.http_client.session.headers.update({"Authorization": "Bearer " + token})
         if not isinstance(account, str):
@@ -91,7 +90,6 @@ class Client(object):
             raise TypeError('Parameter "service" must be a dictionary')
         return self._call("service_run", [json.dumps(service), nodes])
 
-
     def leave_swarm_service(self, nodes):
         if not isinstance(nodes, list):
             raise TypeError('Parameter "nodes" must be given in a list form')
@@ -107,7 +105,6 @@ class Client(object):
         if not isinstance(num, int):
             raise TypeError('Parameter "num" must a positive integer')
         return self._call("discovery_discover", [num])
-
 
     # DOCKER IMAGE MANAGER
     def load_image_to_node(self, node_id, image_hash, token):
